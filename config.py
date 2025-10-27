@@ -40,10 +40,10 @@ START_PIC = os.environ.get("START_PIC", "https://envs.sh/iaP.jpg")
 FORCE_PIC = os.environ.get("FORCE_PIC", "https://envs.sh/iaw.jpg")
 
 #--------------------------------------------
-SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "gplinks.com")
-SHORTLINK_API = os.environ.get("SHORTLINK_API", "6039024d791b89459bb4667a367c4a2d5a511739")
+SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "https://concrete-amity-opsoft-b1d77acb.koyeb.app/api")
+SHORTLINK_API = os.environ.get("SHORTLINK_API", "3adca196c74366f9d2991580d3fc459015b8ae36")
 VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 43200)) # Add time in seconds
-TUT_VID = os.environ.get("TUT_VID","https://t.me/tutorialnaut/2")
+TUT_VID = os.environ.get("TUT_VID","https://t.me/tutorial_filx/5")
 
 #--------------------------------------------
 
@@ -52,7 +52,7 @@ HELP_TXT = "<b><blockquote>ᴛʜɪs ɪs ᴀɴ ғɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏ�
 ABOUT_TXT = "<b><blockquote>◈ ᴄʀᴇᴀᴛᴏʀ: <a href=https://t.me/NaughtyFlicks>NaughtyFlicks</a></blockquote></b>"
 #--------------------------------------------
 #--------------------------------------------
-START_MSG = os.environ.get("START_MESSAGE", "<pre>𝑰 𝒄𝒂𝒏 𝒔𝒕𝒐𝒓𝒆 𝒑𝒓𝒊𝒗𝒂𝒕𝒆 𝒇𝒊𝒍𝒆𝒔 𝒊𝒏 𝑺𝒑𝒆𝒄𝒊𝒇𝒊𝒆𝒅 𝑪𝒉𝒂𝒏𝒏𝒆𝒍 𝒂𝒏𝒅 𝒐𝒕𝒉𝒆𝒓 𝒖𝒔𝒆𝒓𝒔 𝒄𝒂𝒏 𝒂𝒄𝒄𝒆𝒔𝒔 𝒊𝒕 𝒇𝒓𝒐𝒎 𝒔𝒑𝒆𝒄𝒊𝒂𝒍 𝒍𝒊𝒏𝒌.</pre>")
+START_MSG = os.environ.get("START_MESSAGE", "<pre>I can store private files in a specified channel, and other users can access them through a special link.</pre>")
 FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "ʜᴇʟʟᴏ {first}\n\n<b>ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ʀᴇʟᴏᴀᴅ button ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛᴇᴅ ꜰɪʟᴇ.</b>")
 
 CMD_TXT = """<blockquote><b>» ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs:</b></blockquote>
@@ -79,7 +79,7 @@ CMD_TXT = """<blockquote><b>» ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs:</b></blockqu
 """
 #--------------------------------------------
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", "@NaughtyFlicks") #set your Custom Caption here, Keep None for Disable Custom Caption
-PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False #set True if you want to prevent users from forwarding files from bot
+PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "True") == "True" else False #set True if you want to prevent users from forwarding files from bot
 #--------------------------------------------
 #Set true if you want Disable your Channel Posts Share button
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
