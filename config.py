@@ -52,7 +52,7 @@ HELP_TXT = "<b><blockquote>ᴛʜɪs ɪs ᴀɴ ғɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏ�
 ABOUT_TXT = "<b><blockquote>◈ ᴄʀᴇᴀᴛᴏʀ: <a href=https://t.me/NaughtyFlicks>NaughtyFlicks</a></blockquote></b>"
 #--------------------------------------------
 #--------------------------------------------
-START_MSG = os.environ.get("START_MESSAGE", "<pre>pre-formatted fixed-width code block</pre><pre><code class="language-python">pre-formatted fixed-width code block written in the Python programming language</code></pre>")
+START_MSG = os.environ.get("START_MESSAGE", "<pre>𝑰 𝒄𝒂𝒏 𝒔𝒕𝒐𝒓𝒆 𝒑𝒓𝒊𝒗𝒂𝒕𝒆 𝒇𝒊𝒍𝒆𝒔 𝒊𝒏 𝑺𝒑𝒆𝒄𝒊𝒇𝒊𝒆𝒅 𝑪𝒉𝒂𝒏𝒏𝒆𝒍 𝒂𝒏𝒅 𝒐𝒕𝒉𝒆𝒓 𝒖𝒔𝒆𝒓𝒔 𝒄𝒂𝒏 𝒂𝒄𝒄𝒆𝒔𝒔 𝒊𝒕 𝒇𝒓𝒐𝒎 𝒔𝒑𝒆𝒄𝒊𝒂𝒍 𝒍𝒊𝒏𝒌.</pre>")
 FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "ʜᴇʟʟᴏ {first}\n\n<b>ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ʀᴇʟᴏᴀᴅ button ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛᴇᴅ ꜰɪʟᴇ.</b>")
 
 CMD_TXT = """<blockquote><b>» ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs:</b></blockquote>
