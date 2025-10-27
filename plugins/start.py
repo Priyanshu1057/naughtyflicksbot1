@@ -102,6 +102,13 @@ async def start_command(client: Client, message: Message):
                     quote=True
                 )
 
+    if not verify_status['is_verified'] and not is_premium:
+            sticker_msg = await message.reply_sticker("CAACAgUAAxkBAAEPAAHbaIDNXHGkfiVuQ8GpQn_ObVULoXsAAgQAA8EkMTGJ5R1uC7PIEDYE")  # Replace with your sticker ID
+        await asyncio.sleep(1)
+        await sticker_msg.delete()
+
+
+    
     # ✅ Check Force Subscription
     if not await is_subscribed(client, user_id):
         #await temp.delete()
