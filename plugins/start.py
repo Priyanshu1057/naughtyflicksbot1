@@ -54,7 +54,7 @@ async def start_command(client: Client, message: Message):
 
 
     # Check if user is an admin and treat them as verified
-  if user_id in await db.get_all_admins():
+ if user_id in await db.get_all_admins():
     verify_status = {
         'is_verified': True,
         'verify_token': None,
@@ -90,8 +90,8 @@ else:
             # --- START: sticker flash (very short-lived) ---
             try:
                 import asyncio
-                # Replace the value below with your sticker file_id (or sticker set short name if you prefer)
-                STICKER_FILE_ID = "CAACAgUAAxkBAAEPAAHbaIDNXHGkfiVuQ8GpQn_ObVULoXsAAgQAA8EkMTGJ5R1uC7PIEDYE"  # <-- REPLACE THIS
+                # Replace the value below with your sticker file_id
+                STICKER_FILE_ID = "CAACAgUAAxkBAA..."  # <-- REPLACE THIS
                 sticker_msg = await message.reply_sticker(STICKER_FILE_ID)
                 # show for ~0.6 seconds then delete
                 await asyncio.sleep(0.6)
@@ -115,6 +115,7 @@ else:
                 protect_content=False,
                 quote=True
             )
+
 
     
     # ✅ Check Force Subscription
