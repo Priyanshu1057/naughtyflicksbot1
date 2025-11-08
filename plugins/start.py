@@ -65,7 +65,7 @@ async def start_command(client: Client, message: Message):
         verify_status = await db.get_verify_status(id)
 
         # If TOKEN is enabled, handle verification logic
-        if SHORTLINK_URL or SHORTLINK_API:
+    if SHORTLINK_URL or SHORTLINK_API:
             if verify_status['is_verified'] and VERIFY_EXPIRE < (time.time() - verify_status['verified_time']):
                 await db.update_verify_status(user_id, is_verified=False)
 
@@ -86,7 +86,7 @@ async def start_command(client: Client, message: Message):
                     quote=True
                 )
 
-            if not verify_status['is_verified'] and not is_premium:
+        if not verify_status['is_verified'] and not is_premium:
                 # --- START: sticker flash (very short-lived) ---
                 try:
                     import asyncio
