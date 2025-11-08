@@ -252,6 +252,18 @@ async def get_shortlink(url, api, link):
 subscribed = filters.create(is_subscribed)
 admin = filters.create(check_admin)
 
+
+
+async def show_temp_sticker(client, chat_id, sticker_id="CAACAgUAAxkBAAEIYVxi1g4qFh3rD2nZQh3b1k2h2GJ5_gACXgADwZxgFZsK8nK6y2o9KQQ", delay=3):
+    msg = await client.send_sticker(chat_id, sticker_id)
+    async def delete_later(m):
+        try:
+            await asyncio.sleep(delay)
+            await client.delete_messages(m.chat.id, m.id)
+        except Exception:
+            pass
+    asyncio.create_task(delete_later(msg))
+
 #rohit_1888 on Tg :
 
 # Don't Remove Credit @CodeFlix_Bots, @rohit_1888
