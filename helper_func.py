@@ -8,10 +8,11 @@ import time
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import *
-from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant , MediaEmpty
 from shortzy import Shortzy
 from pyrogram.errors import FloodWait , BadRequest
 from database.database import *
+
 
 
 
@@ -257,6 +258,8 @@ admin = filters.create(check_admin)
 # Replace your existing show_temp_sticker with this resilient helper
 
 
+
+
 async def show_temp_sticker(
     client,
     chat_id,
@@ -265,21 +268,16 @@ async def show_temp_sticker(
 ):
     """
     Send a sticker briefly and delete it later.
-    If sticker sending fails (invalid file_id / media empty), fall back to a harmless text message
-    so the flow continues and verification message will still be sent.
+    Falls back to a tiny emoji message if sending the sticker fails.
     """
     try:
-        msg = await client.send_sticker(chat_id, sticker_id)
-    except BadRequest as e:
-        # Common cause: MEDIA_EMPTY or sticker not available for this bot
+        msg = await client.send_sticker(chat_id=chat_id, sticker=sticker_id)
+    except (MediaEmpty, BadRequest):
         try:
-            # fallback: send a short ephemeral text (no big media)
             msg = await client.send_message(chat_id, "🔔")
         except Exception:
-            # If even that fails, abort silently so main flow continues
             return None
     except Exception:
-        # any other unexpected error: do not let it crash the flow
         try:
             msg = await client.send_message(chat_id, "🔔")
         except Exception:
@@ -288,24 +286,13 @@ async def show_temp_sticker(
     async def _delete(m):
         try:
             await asyncio.sleep(delay)
-            # try both delete_messages and delete with message_id for compatibility
-            await client.delete_messages(m.chat.id if hasattr(m, "chat") else chat_id, m.message_id if hasattr(m, "message_id") else m.id)
+            # support both attribute names safely
+            mid = getattr(m, "message_id", getattr(m, "id", None))
+            cid = getattr(m, "chat", None).id if getattr(m, "chat", None) else chat_id
+            if mid:
+                await client.delete_messages(cid, mid)
         except Exception:
             pass
 
-    # schedule deletion but don't await it (non-blocking)
     asyncio.create_task(_delete(msg))
     return msg
-#rohit_1888 on Tg :
-
-# Don't Remove Credit @CodeFlix_Bots, @rohit_1888
-# Ask Doubt on telegram @CodeflixSupport
-#
-# Copyright (C) 2025 by Codeflix-Bots@Github, < https://github.com/Codeflix-Bots >.
-#
-# This file is part of < https://github.com/Codeflix-Bots/FileStore > project,
-# and is released under the MIT License.
-# Please see < https://github.com/Codeflix-Bots/FileStore/blob/master/LICENSE >
-#
-# All rights reserved.
-#
