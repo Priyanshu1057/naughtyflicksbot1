@@ -10,7 +10,7 @@ from pyrogram.enums import ChatMemberStatus
 from config import *
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from shortzy import Shortzy
-from pyrogram.errors import FloodWait
+from pyrogram.errors import FloodWait , BadRequest
 from database.database import *
 
 
@@ -254,16 +254,48 @@ admin = filters.create(check_admin)
 
 
 
-async def show_temp_sticker(client, chat_id, sticker_id="CAACAgUAAxkBAAEIYVxi1g4qFh3rD2nZQh3b1k2h2GJ5_gACXgADwZxgFZsK8nK6y2o9KQQ", delay=3):
-    msg = await client.send_sticker(chat_id, sticker_id)
-    async def delete_later(m):
+# Replace your existing show_temp_sticker with this resilient helper
+
+
+async def show_temp_sticker(
+    client,
+    chat_id,
+    sticker_id="CAACAgUAAxkBAAEIYVxi1g4qFh3rD2nZQh3b1k2h2GJ5_gACXgADwZxgFZsK8nK6y2o9KQQ",
+    delay=3,
+):
+    """
+    Send a sticker briefly and delete it later.
+    If sticker sending fails (invalid file_id / media empty), fall back to a harmless text message
+    so the flow continues and verification message will still be sent.
+    """
+    try:
+        msg = await client.send_sticker(chat_id, sticker_id)
+    except BadRequest as e:
+        # Common cause: MEDIA_EMPTY or sticker not available for this bot
+        try:
+            # fallback: send a short ephemeral text (no big media)
+            msg = await client.send_message(chat_id, "🔔")
+        except Exception:
+            # If even that fails, abort silently so main flow continues
+            return None
+    except Exception:
+        # any other unexpected error: do not let it crash the flow
+        try:
+            msg = await client.send_message(chat_id, "🔔")
+        except Exception:
+            return None
+
+    async def _delete(m):
         try:
             await asyncio.sleep(delay)
-            await client.delete_messages(m.chat.id, m.id)
+            # try both delete_messages and delete with message_id for compatibility
+            await client.delete_messages(m.chat.id if hasattr(m, "chat") else chat_id, m.message_id if hasattr(m, "message_id") else m.id)
         except Exception:
             pass
-    asyncio.create_task(delete_later(msg))
 
+    # schedule deletion but don't await it (non-blocking)
+    asyncio.create_task(_delete(msg))
+    return msg
 #rohit_1888 on Tg :
 
 # Don't Remove Credit @CodeFlix_Bots, @rohit_1888
