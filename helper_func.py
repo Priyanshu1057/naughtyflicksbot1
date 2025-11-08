@@ -260,7 +260,7 @@ admin = filters.create(check_admin)
 async def show_temp_sticker(
     client,
     chat_id,
-    sticker_id="CAACAgUAAxkBAAEIYVxi1g4qFh3rD2nZQh3b1k2h2GJ5_gACXgADwZxgFZsK8nK6y2o9KQQ",
+    sticker_id="CAACAgUAAxkBAAEPAAHbaIDNXHGkfiVuQ8GpQn_ObVULoXsAAgQAA8EkMTGJ5R1uC7PIEDYE",
     delay=3,
 ):
     """
