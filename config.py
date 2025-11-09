@@ -41,7 +41,7 @@ FORCE_PIC = os.environ.get("FORCE_PIC", "https://envs.sh/iaw.jpg")
 
 #--------------------------------------------
 SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "https://concrete-amity-opsoft-b1d77acb.koyeb.app/api")
-SHORTLINK_API = os.environ.get("SHORTLINK_API", "3adca196c74366f9d2991580d3fc459015b8ae36")
+SHORTLINK_API = os.environ.get("SHORTLINK_API", "6039024d791b89459bb4667a367c4a2d5a511739")
 VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 43200)) # Add time in seconds
 TUT_VID = os.environ.get("TUT_VID","https://t.me/tutorial_filx/5")
 
