@@ -8,9 +8,9 @@ import time
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import *
-from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant , MediaEmpty
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from shortzy import Shortzy
-from pyrogram.errors import FloodWait , BadRequest
+from pyrogram.errors import FloodWait
 from database.database import *
 
 
@@ -255,44 +255,3 @@ admin = filters.create(check_admin)
 
 
 
-# Replace your existing show_temp_sticker with this resilient helper
-
-
-
-
-async def show_temp_sticker(
-    client,
-    chat_id,
-    sticker_id="CAACAgUAAxkBAAEPAAHbaIDNXHGkfiVuQ8GpQn_ObVULoXsAAgQAA8EkMTGJ5R1uC7PIEDYE",
-    delay=3,
-):
-    """
-    Send a sticker briefly and delete it later.
-    Falls back to a tiny emoji message if sending the sticker fails.
-    """
-    try:
-        msg = await client.send_sticker(chat_id=chat_id, sticker=sticker_id)
-    except (MediaEmpty, BadRequest):
-        try:
-            msg = await client.send_message(chat_id, "🔔")
-        except Exception:
-            return None
-    except Exception:
-        try:
-            msg = await client.send_message(chat_id, "🔔")
-        except Exception:
-            return None
-
-    async def _delete(m):
-        try:
-            await asyncio.sleep(delay)
-            # support both attribute names safely
-            mid = getattr(m, "message_id", getattr(m, "id", None))
-            cid = getattr(m, "chat", None).id if getattr(m, "chat", None) else chat_id
-            if mid:
-                await client.delete_messages(cid, mid)
-        except Exception:
-            pass
-
-    asyncio.create_task(_delete(msg))
-    return msg
